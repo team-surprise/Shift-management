@@ -35,13 +35,13 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # 認証機能 gemを追加
-gem "devise", "~> 4.9" # 
+gem "devise", "~> 4.9" #
 
 # Tailwind CSS を追加
-gem "tailwindcss-rails" # 
+gem "tailwindcss-rails" #
 
 # SQLクエリのN+1問題を検出
-gem "bullet" # 
+gem "bullet" #
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -54,13 +54,16 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # RSpecを追加
-  gem "rspec-rails" # 
+  gem "rspec-rails" #
 
   # FactoryBotを追加
-  gem "factory_bot_rails" # 
+  gem "factory_bot_rails" #
 
   # Shoulda Matchersを追加
-  gem "shoulda-matchers" # 
+  gem "shoulda-matchers" #
+
+  # letter_openerを追加
+  gem "letter_opener_web" #
 end
 
 group :development do
@@ -70,6 +73,6 @@ end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara" # 
-  gem "selenium-webdriver" # 
+  gem "capybara" #
+  gem "selenium-webdriver" #
 end
