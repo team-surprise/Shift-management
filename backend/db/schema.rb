@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_31_035734) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_31_040338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,16 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_31_035734) do
     t.index ["name"], name: "index_stores_on_name", unique: true
   end
 
+  create_table "time_records", force: :cascade do |t|
+    t.bigint "work_day_id", null: false
+    t.datetime "clock_in_time", null: false
+    t.datetime "clock_out_time"
+    t.integer "break_time", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["work_day_id"], name: "index_time_records_on_work_day_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -91,6 +101,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_31_035734) do
   add_foreign_key "employments", "users"
   add_foreign_key "shift_requests", "stores"
   add_foreign_key "shift_requests", "users"
+  add_foreign_key "time_records", "work_days"
   add_foreign_key "work_days", "stores"
   add_foreign_key "work_days", "users"
 end
