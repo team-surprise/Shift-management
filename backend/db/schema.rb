@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_31_035419) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_31_035734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,8 +75,22 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_31_035419) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "work_days", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "user_id", null: false
+    t.date "work_date", null: false
+    t.integer "work_hours", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id", "user_id", "work_date"], name: "index_work_days_on_store_id_and_user_id_and_work_date", unique: true
+    t.index ["store_id"], name: "index_work_days_on_store_id"
+    t.index ["user_id"], name: "index_work_days_on_user_id"
+  end
+
   add_foreign_key "employments", "stores"
   add_foreign_key "employments", "users"
   add_foreign_key "shift_requests", "stores"
   add_foreign_key "shift_requests", "users"
+  add_foreign_key "work_days", "stores"
+  add_foreign_key "work_days", "users"
 end
