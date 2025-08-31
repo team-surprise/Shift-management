@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_31_033811) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_31_034648) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "employments", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "status"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "hourly_wage_cents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_employments_on_store_id"
+    t.index ["user_id"], name: "index_employments_on_user_id"
+  end
 
   create_table "store_accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -49,4 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_31_033811) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "employments", "stores"
+  add_foreign_key "employments", "users"
 end
