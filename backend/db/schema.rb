@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_31_034648) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_31_035419) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,6 +25,18 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_31_034648) do
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_employments_on_store_id"
     t.index ["user_id"], name: "index_employments_on_user_id"
+  end
+
+  create_table "shift_requests", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "requested_date_user"
+    t.datetime "requested_date_store"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id", "user_id"], name: "index_shift_requests_on_store_id_and_user_id"
+    t.index ["store_id"], name: "index_shift_requests_on_store_id"
+    t.index ["user_id"], name: "index_shift_requests_on_user_id"
   end
 
   create_table "store_accounts", force: :cascade do |t|
@@ -65,4 +77,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_31_034648) do
 
   add_foreign_key "employments", "stores"
   add_foreign_key "employments", "users"
+  add_foreign_key "shift_requests", "stores"
+  add_foreign_key "shift_requests", "users"
 end
