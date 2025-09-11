@@ -1,7 +1,7 @@
 # シフト管理 開発ガイド
 📌 プロジェクト概要
-このプロジェクトは **Rails（通常モード） + React (Vite) + PostgreSQL** を Docker 上で動かすシフト管理アプリケーションです。  
-Rails 側では API だけでなく **ビュー（HTML, ERB, CSS, JS）も利用**し、管理者用の画面（Adminページ）などを直接レンダリングします。  
+このプロジェクトは **Rails（通常モード） + React (Vite) + PostgreSQL** を Docker 上で動かすシフト管理アプリケーションです。
+Rails 側では API だけでなく **ビュー（HTML, ERB, CSS, JS）も利用**し、管理者用の画面（Adminページ）などを直接レンダリングします。
 チーム全員が同じ環境で開発できるよう、Docker Compose によりバックエンド・フロントエンド・DBを統合管理します。
 
 ## 🚀 環境構築
@@ -19,7 +19,7 @@ cd shift-management
 
 # 環境変数ファイルを作成
 cp frontend/.env.example frontend/.env
-cp backend/.env.example backend/.env
+cp .env.example backend/.env
 
 # Dockerイメージをビルド
 docker-compose build
