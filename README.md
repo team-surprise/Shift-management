@@ -19,7 +19,7 @@ cd shift-management
 
 # 環境変数ファイルを作成
 cp frontend/.env.example frontend/.env
-cp .env.example backend/.env
+cp .env.example .env
 
 # Dockerイメージをビルド
 docker-compose build
